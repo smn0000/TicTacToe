@@ -1,0 +1,124 @@
+*{
+    margin: 0;
+    background-color: #2b2b26;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.square{
+    aspect-ratio: 1/1;
+    width: 35%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.cell , .cell div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell div{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: transparent;
+}
+
+.cell:nth-of-type(3n-2), .cell:nth-of-type(3n-1){
+    border-right: 5px solid black;
+}
+
+.cell:nth-of-type(1),.cell:nth-of-type(2),.cell:nth-of-type(3),.cell:nth-of-type(4),.cell:nth-of-type(5),.cell:nth-of-type(6){
+    border-bottom: 5px solid black;
+}
+
+[data-state="empty"]:hover{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+[data-state]:not([data-state="empty"]):hover{
+    cursor:not-allowed;
+}
+
+[data-state="x"]::before , [data-state="x"]::after{
+    width: 10%;
+    height: 75%;
+    background-color: black;
+    content: '';
+    display: '';
+    position: absolute;
+}
+
+[data-state="x"],[data-state="c"]{animation: appear 200ms cubic-bezier(.06,.99,.97,1.5)}
+
+[data-state="x"]::after{transform: rotateZ(-45deg);}
+[data-state="x"]::before{transform: rotateZ(45deg);}
+
+[data-state="c"]::before{
+    aspect-ratio: 1/1;
+    width: 75%;
+    border-radius: 50%;
+    background-color: black;
+    content: '';
+    display: '';
+    position: absolute;
+}
+
+[data-state="c"]::after{
+    aspect-ratio: 1/1;
+    width: 60%;
+    border-radius: 50%;
+    background-color:#2b2b26;
+    content: '';
+    display: '';
+    position: absolute;
+}
+
+.gameover{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.705);
+    color: white;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 10rem;
+}
+.gameover button{
+    width: 30%;
+    height: 10%;
+    font-size: 4rem;
+    color: white;
+    cursor: pointer;
+}
+
+.newgame{
+    width: 20%;
+    height: 15%;
+    color: white;
+    font-size: 5rem;
+    border: 1px white solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    padding: .3rem;
+}
+
+@keyframes appear {
+    from{
+        transform: scale(0);
+    }
+    to{
+    }
+}
